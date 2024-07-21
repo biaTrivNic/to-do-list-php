@@ -54,4 +54,19 @@ class DatabaseHandler extends DatasourceConnection
             echo "Error updating record: " . $this->conn->error;
         }
     }
+    public function countTarefas($sql)
+    {
+        $result = $this->conn->query($sql);
+
+        $tarefas = [];
+
+        if (!empty($result->num_rows)) {
+            while ($row = $result->fetch_assoc()) {
+                $tarefas[] = $row;
+            }
+
+            return $tarefas;
+        }
+
+    }
 }

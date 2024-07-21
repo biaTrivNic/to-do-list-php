@@ -19,6 +19,7 @@ $routes = [
     'tarefas/delete' => 'views' . DS . 'tarefas' . DS . 'delete.php',
     'tarefas/edit' => 'views' . DS . 'tarefas' . DS . 'edit.php',
     'tarefas/kanban' => 'views' . DS . 'tarefas' . DS . 'kanban.php',
+    // 'tarefas/style' => 'style' . DS . 'reset.css'
 ];
 
 if (array_key_exists($request, $routes)) {

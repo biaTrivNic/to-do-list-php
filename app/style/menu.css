@@ -1,0 +1,87 @@
+.menu_container {
+    background-color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.menu_container h1 {
+    font-size: 40px;
+    padding: 40px 30px;
+}
+
+
+.menu_container ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu_container ul li {
+    font-size: 20px;
+    padding: 10px 15px;
+    margin-left: 20px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    /* overflow: hidden; */
+    position: relative;
+}
+
+.menu_container ul li a {
+    position: relative;
+    z-index: 1;
+}
+
+.menu_container ul li a:hover {
+    color: #6c6c6f;
+}
+
+.active a:hover {
+    color: #1C122B !important;
+    cursor: default;
+}
+
+
+.menu_container ul li::after {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: 0;
+    height: 40px;
+    width: 0;
+    border-bottom-right-radius: 50%;
+    background-color: transparent;
+    box-shadow: 0 20px 0 0 #DEDEE8;
+}
+
+.menu_container ul li::before {
+    content: "";
+    background-color: #DEDEE8;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    width: 0;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.active::before {
+    width: 100% !important;
+    transition: 5s;
+}
+.active::after {
+    width: 40px !important;
+    transition: 5s;
+}
+
+/* .menu_container ul li:hover::before {
+    width: 100%;
+    transition: 1s;
+}
+
+.menu_container ul li:hover::after {
+    width: 40px;
+    transition: 1s;
+} */

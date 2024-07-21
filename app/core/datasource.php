@@ -8,10 +8,5 @@ class DatasourceConnection
     {
         $this->conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
-        if ($this->conn->connect_error) {
-            die("Conexão falhou: " . $this->conn->connect_error);
-        }
-
-        echo "Conectado com sucesso";
     }
 }

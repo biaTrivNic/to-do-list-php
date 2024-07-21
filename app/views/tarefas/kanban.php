@@ -28,53 +28,60 @@ $tarefas = $databaseHandler->getAllTarefas($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban - Tarefas</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'reset.css' ?>">
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'style.css' ?>">
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'menu.css' ?>">
 </head>
 
 <body>
-    <div class="kanban-board">
-        <div class="kanban-column" id="todo">
-            <h2>To Do</h2>
-            <div class="kanban-cards" id="todo-cards">
-                <?php foreach ($tarefas as $tarefa) : ?>
-                    <?php if ($tarefa['tarefa_status'] == "pendente") : ?>
-                        <tr>
-                            <td><?php echo $tarefa['tarefa_nome']; ?></td>
-                            <td><?php echo $tarefa['categoria_nome']; ?></td>
-                        </tr>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        <div class="kanban-column" id="in-progress">
-            <h2>In Progress</h2>
-            <div class="kanban-cards" id="in-progress-cards">
-                <?php foreach ($tarefas as $tarefa) : ?>
-                    <?php if ($tarefa['tarefa_status'] == "em andamento") : ?>
-                        <tr>
-                            <td><?php echo $tarefa['tarefa_nome']; ?></td>
-                            <td><?php echo $tarefa['categoria_nome']; ?></td>
-                        </tr>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        <div class="kanban-column" id="done">
-            <h2>Done</h2>
-            <div class="kanban-cards" id="done-cards">
-                <?php foreach ($tarefas as $tarefa) : ?>
-                    <?php if ($tarefa['tarefa_status'] == "concluída") : ?>
-                        <tr>
-                            <td><?php echo $tarefa['tarefa_nome']; ?></td>
-                            <td><?php echo $tarefa['categoria_nome']; ?></td>
-                        </tr>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+    <div class="container">
+    <?php require_once ROOT_DIR . DS . 'elements' . DS . 'menu.php'; ?>
 
+        <div class="content">
+            <div class="kanban-board">
+                <div class="kanban-column" id="todo">
+                    <h2>To Do</h2>
+                    <div class="kanban-cards" id="todo-cards">
+                        <?php foreach ($tarefas as $tarefa) : ?>
+                            <?php if ($tarefa['tarefa_status'] == "pendente") : ?>
+                                <tr>
+                                    <td><?php echo $tarefa['tarefa_nome']; ?></td>
+                                    <td><?php echo $tarefa['categoria_nome']; ?></td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="kanban-column" id="in-progress">
+                    <h2>In Progress</h2>
+                    <div class="kanban-cards" id="in-progress-cards">
+                        <?php foreach ($tarefas as $tarefa) : ?>
+                            <?php if ($tarefa['tarefa_status'] == "em andamento") : ?>
+                                <tr>
+                                    <td><?php echo $tarefa['tarefa_nome']; ?></td>
+                                    <td><?php echo $tarefa['categoria_nome']; ?></td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="kanban-column" id="done">
+                    <h2>Done</h2>
+                    <div class="kanban-cards" id="done-cards">
+                        <?php foreach ($tarefas as $tarefa) : ?>
+                            <?php if ($tarefa['tarefa_status'] == "concluída") : ?>
+                                <tr>
+                                    <td><?php echo $tarefa['tarefa_nome']; ?></td>
+                                    <td><?php echo $tarefa['categoria_nome']; ?></td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
