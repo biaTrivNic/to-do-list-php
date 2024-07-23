@@ -1,0 +1,78 @@
+.kanban-board {
+    display: flex;
+    justify-content: space-around;
+    background-color: #FAFBFF;
+    margin: 20px 30px;
+    border-radius: 20px;
+    padding: 40px 30px;
+    -webkit-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+}
+
+.kanban-column h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 25px;
+    /* text-align: center; */
+    margin-left: 5px;
+}
+
+.kanban-cards {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    display: flex;
+    margin: 20px 0 0 0;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    gap: 15px;
+    -webkit-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    position: relative;
+}
+
+#in-progress h2{
+    color: rgb(97, 97, 212);
+}
+
+#todo h2{
+    color: rgb(212, 73, 73);
+}
+
+#done h2{
+    color: rgb(58, 168, 58);
+}
+
+.card h3 {
+    font-size: 20px;
+}
+.card p {
+    font-size: 17px;
+}
+.btn-container {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+
+.edit-btn {
+    border: none;
+    background-color: rgb(101, 129, 241);
+    cursor: pointer;
+    font-size: 15px;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.edit-btn:hover {
+    transform: scale(1.1);
+}

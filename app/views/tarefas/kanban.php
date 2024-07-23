@@ -31,52 +31,84 @@ $tarefas = $databaseHandler->getAllData($sql);
     <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'reset.css' ?>">
     <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'style.css' ?>">
     <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'menu.css' ?>">
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'header.css' ?>">
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'kanban.css' ?>">
 </head>
 
 <body>
     <div class="container">
-    <?php require_once ROOT_DIR . DS . 'elements' . DS . 'menu.php'; ?>
+        <?php require_once ROOT_DIR . DS . 'elements' . DS . 'menu.php'; ?>
 
         <div class="content">
+            <?php require_once ROOT_DIR . DS . 'elements' . DS . 'header.php'; ?>
             <div class="kanban-board">
                 <div class="kanban-column" id="todo">
-                    <h2>To Do</h2>
+                    <h2>Pendente</h2>
                     <div class="kanban-cards" id="todo-cards">
                         <?php foreach ($tarefas as $tarefa) : ?>
                             <?php if ($tarefa['tarefa_status'] == "pendente") : ?>
-                                <tr>
-                                    <td><?php echo $tarefa['tarefa_nome']; ?></td>
-                                    <td><?php echo $tarefa['categoria_nome']; ?></td>
-                                </tr>
+                                <div class="card">
+                                    <h3><?php echo $tarefa['tarefa_nome']; ?></h3>
+                                    <p><?php echo $tarefa['categoria_nome']; ?></p>
+                                    <form method="get" action="/tarefas/edit">
+                                        <input type="hidden" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
+                                        <input type="hidden" name="path" value="/tarefas/kanban">
+                                        <button class="edit-btn" type="submit">Editar</button>
+                                    </form>
+                                    <form class="btn-container" method="get" action="/tarefas/delete">
+                                        <input type="hidden" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
+                                        <input type="hidden" name="path" value="/tarefas/kanban">
+                                        <button class="circle-btn" id="delete-btn" type="submit"><img src="/assets/img/circle-xmark-regular.svg" alt=""></button>
+                                    </form>
+                                </div>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="kanban-column" id="in-progress">
-                    <h2>In Progress</h2>
+                    <h2>Em andamento</h2>
                     <div class="kanban-cards" id="in-progress-cards">
                         <?php foreach ($tarefas as $tarefa) : ?>
                             <?php if ($tarefa['tarefa_status'] == "em andamento") : ?>
-                                <tr>
-                                    <td><?php echo $tarefa['tarefa_nome']; ?></td>
-                                    <td><?php echo $tarefa['categoria_nome']; ?></td>
-                                </tr>
+                                <div class="card">
+                                    <h3><?php echo $tarefa['tarefa_nome']; ?></h3>
+                                    <p><?php echo $tarefa['categoria_nome']; ?></p>
+                                    <form method="get" action="/tarefas/edit">
+                                        <input type="hidden" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
+                                        <input type="hidden" name="path" value="/tarefas/kanban">
+                                        <button class="edit-btn" type="submit">Editar</button>
+                                    </form>
+                                    <form class="btn-container" method="get" action="/tarefas/delete">
+                                        <input type="hidden" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
+                                        <input type="hidden" name="path" value="/tarefas/kanban">
+                                        <button class="circle-btn" id="delete-btn" type="submit"><img src="/assets/img/circle-xmark-regular.svg" alt=""></button>
+                                    </form>
+                                </div>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="kanban-column" id="done">
-                    <h2>Done</h2>
+                    <h2>Concluído</h2>
                     <div class="kanban-cards" id="done-cards">
                         <?php foreach ($tarefas as $tarefa) : ?>
                             <?php if ($tarefa['tarefa_status'] == "concluída") : ?>
-                                <tr>
-                                    <td><?php echo $tarefa['tarefa_nome']; ?></td>
-                                    <td><?php echo $tarefa['categoria_nome']; ?></td>
-                                </tr>
+                                <div class="card">
+                                    <h3><?php echo $tarefa['tarefa_nome']; ?></h3>
+                                    <p><?php echo $tarefa['categoria_nome']; ?></p>
+                                    <form method="get" action="/tarefas/edit">
+                                        <input type="hidden" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
+                                        <input type="hidden" name="path" value="/tarefas/kanban">
+                                        <button class="edit-btn" type="submit">Editar</button>
+                                    </form>
+                                    <form class="btn-container" method="get" action="/tarefas/delete">
+                                        <input type="hidden" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
+                                        <input type="hidden" name="path" value="/tarefas/kanban">
+                                        <button class="circle-btn" id="delete-btn" type="submit"><img src="/assets/img/circle-xmark-regular.svg" alt=""></button>
+                                    </form>
+                                </div>
                             <?php endif; ?>
                         <?php endforeach; ?>
-
                     </div>
                 </div>
             </div>

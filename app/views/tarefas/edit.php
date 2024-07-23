@@ -2,7 +2,8 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
-    $tarefa_id = $_GET['tarefa_id'];
+    $tarefa_id = (int)$_GET['tarefa_id'];
+    $path = $_GET['path'];
 
     $sql = "SELECT 
         tarefas.id AS tarefa_id,
@@ -28,14 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $config = Config::getConfig();
     $databaseHandler = new DatabaseHandler($config);
     $tarefa = $databaseHandler->getTarefa($sql);
-
-    if ($tarefa) {
-        // Exiba os dados da tarefa
-        echo "Nome da Tarefa: " . $tarefa['tarefa_nome'] . "<br>";
-        // Continue exibindo outros campos conforme necessário
-    } else {
-        echo "Nenhuma tarefa encontrada com o ID fornecido.";
-    }
 
     $sql = "SELECT nome AS grupo_nome, id AS grupo_id
     FROM 
@@ -67,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <h1>Editar Tarefa</h1>
     <form action="edit" method="POST">
         <input type="hidden" id="tarefa_id" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
+        <input type="hidden" id="path" name="path" value="<?php echo $path; ?>">
 
         <label for="nome">Nome da Tarefa:</label><br>
         <input type="text" id="nome" name="nome" value="<?php echo $tarefa['tarefa_nome']; ?>" required><br><br>
@@ -103,6 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST['nome'];
     $data_finalizacao = $_POST['data_finalizacao'];
     $id = (int)$_POST['tarefa_id'];
+    $path = $_POST['path'];
 
     $sql = "UPDATE tarefas 
 SET nome = '$nome', 
@@ -113,6 +108,6 @@ WHERE id = {$id}";
     $databaseHandler = new DatabaseHandler($config);
     $databaseHandler->editTarefas($sql);
 
-    header("Location: /tarefas");
+    header("Location: {$path}");
     exit();
 }

@@ -32,9 +32,6 @@ $categorias = $databaseHandler->getAllData($sql);
         <label for="nome">Nome da Tarefa:</label><br>
         <input type="text" id="nome" name="nome" required><br><br>
 
-        <label for="descricao">Descrição:</label><br>
-        <textarea id="descricao" name="descricao" required></textarea><br><br>
-
         <label for="grupo_id">Grupo:</label><br>
         <select id="grupo_id" name="grupo_id" required>
             <?php foreach ($grupos as $grupo) : ?>
@@ -70,14 +67,13 @@ $categorias = $databaseHandler->getAllData($sql);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
     $grupo_id = $_POST['grupo_id'];
     $categoria_id = $_POST['categoria_id'];
     $status = $_POST['status'];
     $data_finalizacao = $_POST['data_finalizacao'];
 
-    $sql = "INSERT INTO tarefas (nome, descricao, grupo_id, categoria_id, status, data_finalizacao)
-            VALUES ('$nome', '$descricao', $grupo_id, $categoria_id, '$status', '$data_finalizacao')";
+    $sql = "INSERT INTO tarefas (nome, grupo_id, categoria_id, status, data_finalizacao)
+            VALUES ('$nome', $grupo_id, $categoria_id, '$status', '$data_finalizacao')";
 
     $config = Config::getConfig();
     $databaseHandler = new DatabaseHandler($config);
