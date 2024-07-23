@@ -18,7 +18,7 @@ $sql = "SELECT
 
 $config = Config::getConfig();
 $databaseHandler = new DatabaseHandler($config);
-$tarefas = $databaseHandler->getAllTarefas($sql);
+$tarefas = $databaseHandler->getAllData($sql);
 ?>
 
 <!DOCTYPE html>

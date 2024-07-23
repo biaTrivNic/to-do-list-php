@@ -9,7 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         tarefas.nome AS tarefa_nome,
         tarefas.descricao AS tarefa_descricao,
         grupos.nome AS grupo_nome,
+        grupos.id AS grupo_id,
         categorias.nome AS categoria_nome,
+        categorias.id AS categoria_id,
         tarefas.status,
         tarefas.data_criacao,
         tarefas.data_finalizacao
@@ -22,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     WHERE 
         tarefas.id = {$tarefa_id}";
 
+
     $config = Config::getConfig();
     $databaseHandler = new DatabaseHandler($config);
     $tarefa = $databaseHandler->getTarefa($sql);
@@ -33,6 +36,23 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     } else {
         echo "Nenhuma tarefa encontrada com o ID fornecido.";
     }
+
+    $sql = "SELECT nome AS grupo_nome, id AS grupo_id
+    FROM 
+    grupos;";
+
+    $config = Config::getConfig();
+    $databaseHandler = new DatabaseHandler($config);
+    $grupos = $databaseHandler->getAllData($sql);
+
+
+    $sql = "SELECT nome AS categoria_nome, id AS categoria_id
+    FROM 
+    categorias;";
+
+    $config = Config::getConfig();
+    $databaseHandler = new DatabaseHandler($config);
+    $categorias = $databaseHandler->getAllData($sql);
 }
 ?>
 
@@ -49,13 +69,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <input type="hidden" id="tarefa_id" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
 
         <label for="nome">Nome da Tarefa:</label><br>
-        <input type="text" id="nome" name="nome" value="nome" required><br><br>
+        <input type="text" id="nome" name="nome" value="<?php echo $tarefa['tarefa_nome']; ?>" required><br><br>
 
-        <label for="descricao">Descrição:</label><br>
-        <textarea id="descricao" name="descricao" required><?php echo $tarefa['tarefa_descricao']; ?></textarea><br><br>
+        <label for="grupo_id">Grupo:</label><br>
+        <select id="grupo_id" name="grupo_id" required>
+            <?php foreach ($grupos as $grupo) : ?>
+                <option <?php if($grupo['grupo_id'] == $tarefa['grupo_id']) echo 'selected'?> value="<?php echo $grupo['grupo_id'] ?>"><?php echo $grupo['grupo_nome']?></option>
+            <?php endforeach; ?>
+        </select><br><br>
 
-        <label for="data_criacao">Data de Criação:</label><br>
-        <input type="datetime-local" id="data_criacao" name="data_criacao" value="<?php echo date('Y-m-d\TH:i', strtotime($tarefa['data_criacao'])); ?>" required><br><br>
+        <label for="categoria_id">Categoria:</label><br>
+        <select id="categoria_id" name="categoria_id" required>
+            <?php foreach ($categorias as $categoria) : ?>
+                <option <?php if($categoria['categoria_id'] == $tarefa['categoria_id']) echo 'selected'?> value="<?php echo $categoria['categoria_id'] ?>"><?php echo $categoria['categoria_nome'] ?></option>
+            <?php endforeach; ?>
+        </select><br><br>
+
 
         <label for="data_finalizacao">Data de Finalização:</label><br>
         <input type="datetime-local" id="data_finalizacao" name="data_finalizacao" value="<?php echo $tarefa['data_finalizacao'] ? date('Y-m-d\TH:i', strtotime($tarefa['data_finalizacao'])) : ''; ?>"><br><br>
@@ -72,15 +101,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
     $data_finalizacao = $_POST['data_finalizacao'];
-    $tarefa_id = $_POST['tarefa_id'];
+    $id = (int)$_POST['tarefa_id'];
 
     $sql = "UPDATE tarefas 
-SET nome = '{$nome}', 
-    descricao = '{$descricao}', 
-    data_finalizacao = {$data_finalizacao} 
-WHERE id = {$tarefa_id}";
+SET nome = '$nome', 
+    data_finalizacao = '$data_finalizacao' 
+WHERE id = {$id}";
 
     $config = Config::getConfig();
     $databaseHandler = new DatabaseHandler($config);
@@ -88,5 +115,4 @@ WHERE id = {$tarefa_id}";
 
     header("Location: /tarefas");
     exit();
-
 }

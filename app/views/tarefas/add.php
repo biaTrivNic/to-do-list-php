@@ -1,8 +1,31 @@
+<?php
+
+$sql = "SELECT nome AS grupo_nome, id AS grupo_id
+    FROM 
+    grupos;";
+
+$config = Config::getConfig();
+$databaseHandler = new DatabaseHandler($config);
+$grupos = $databaseHandler->getAllData($sql);
+
+
+$sql = "SELECT nome AS categoria_nome, id AS categoria_id
+    FROM 
+    categorias;";
+
+$config = Config::getConfig();
+$databaseHandler = new DatabaseHandler($config);
+$categorias = $databaseHandler->getAllData($sql);
+
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Inserir Tarefa</title>
 </head>
+
 <body>
     <h1>Inserir Nova Tarefa</h1>
     <form action="new" method="POST">
@@ -14,22 +37,16 @@
 
         <label for="grupo_id">Grupo:</label><br>
         <select id="grupo_id" name="grupo_id" required>
-            <!-- Options should be populated from the database -->
-            <option value="1">Grupo A</option>
-            <option value="2">Grupo B</option>
-            <option value="3">Grupo C</option>
-            <option value="4">Grupo D</option>
-            <option value="5">Grupo E</option>
+            <?php foreach ($grupos as $grupo) : ?>
+                <option value="<?php echo $grupo['grupo_id'] ?>"><?php echo $grupo['grupo_nome'] ?></option>
+            <?php endforeach; ?>
         </select><br><br>
 
         <label for="categoria_id">Categoria:</label><br>
         <select id="categoria_id" name="categoria_id" required>
-            <!-- Options should be populated from the database -->
-            <option value="1">Desenvolvimento</option>
-            <option value="2">Design</option>
-            <option value="3">Marketing</option>
-            <option value="4">Vendas</option>
-            <option value="5">Suporte</option>
+            <?php foreach ($categorias as $categoria) : ?>
+                <option value="<?php echo $categoria['categoria_id'] ?>"><?php echo $categoria['categoria_nome'] ?></option>
+            <?php endforeach; ?>
         </select><br><br>
 
         <label for="status">Status:</label><br>
@@ -39,15 +56,13 @@
             <option value="concluída">Concluída</option>
         </select><br><br>
 
-        <label for="data_criacao">Data de Criação:</label><br>
-        <input type="datetime-local" id="data_criacao" name="data_criacao" required><br><br>
-
         <label for="data_finalizacao">Data de Finalização:</label><br>
         <input type="datetime-local" id="data_finalizacao" name="data_finalizacao"><br><br>
 
-        <input type="submit" value="Inserir Tarefa">
+        <input type="submit" value="Adicionar Tarefa">
     </form>
 </body>
+
 </html>
 
 <?php
@@ -59,18 +74,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $grupo_id = $_POST['grupo_id'];
     $categoria_id = $_POST['categoria_id'];
     $status = $_POST['status'];
-    $data_criacao = $_POST['data_criacao'];
     $data_finalizacao = $_POST['data_finalizacao'];
 
-$sql = "INSERT INTO tarefas (nome, descricao, grupo_id, categoria_id, status, data_criacao, data_finalizacao)
-            VALUES ('$nome', '$descricao', $grupo_id, $categoria_id, '$status', '$data_criacao', '$data_finalizacao')";
+    $sql = "INSERT INTO tarefas (nome, descricao, grupo_id, categoria_id, status, data_finalizacao)
+            VALUES ('$nome', '$descricao', $grupo_id, $categoria_id, '$status', '$data_finalizacao')";
 
-$config = Config::getConfig();
-$databaseHandler = new DatabaseHandler($config);
-$databaseHandler->addTarefas($sql);
+    $config = Config::getConfig();
+    $databaseHandler = new DatabaseHandler($config);
+    $databaseHandler->addTarefas($sql);
 
-header("Location: /tarefas");
-exit();
-
+    header("Location: /tarefas");
+    exit();
 }
-

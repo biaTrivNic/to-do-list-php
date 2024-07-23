@@ -7,7 +7,7 @@ class DatabaseHandler extends DatasourceConnection
         parent::__construct($config);
     }
 
-    public function getAllTarefas($sql)
+    public function getAllData($sql)
     {
         $result = $this->conn->query($sql);
 

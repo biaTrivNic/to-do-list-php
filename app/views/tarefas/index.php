@@ -35,7 +35,7 @@ $sql = "SELECT
 
 $config = Config::getConfig();
 $databaseHandler = new DatabaseHandler($config);
-$tarefas = $databaseHandler->getAllTarefas($sql);
+$tarefas = $databaseHandler->getAllData($sql);
 
 ?>
 
@@ -48,12 +48,12 @@ $tarefas = $databaseHandler->getAllTarefas($sql);
                 <table>
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Descrição</th>
+                            <th>Tarefa</th>
                             <th>Grupo</th>
                             <th>Categoria</th>
                             <th>Status</th>
                             <th>Fim</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -65,7 +65,6 @@ $tarefas = $databaseHandler->getAllTarefas($sql);
                             $date = $dateTime->format('Y-m-d'); ?>
                             <tr>
                                 <td><?php echo $tarefa['tarefa_nome']; ?></td>
-                                <td><?php echo $tarefa['tarefa_descricao']; ?></td>
                                 <td><?php echo $tarefa['grupo_nome']; ?></td>
                                 <td><?php echo $tarefa['categoria_nome']; ?></td>
                                 <td><?php echo $tarefa['status']; ?></td>
@@ -74,6 +73,12 @@ $tarefas = $databaseHandler->getAllTarefas($sql);
                                     <form class="btn-container" method="get" action="/tarefas/edit">
                                         <input type="hidden" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
                                         <button class="edit-btn" type="submit">Editar</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form class="btn-container" method="get" action="/tarefas/done">
+                                        <input type="hidden" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
+                                        <button class="delete-btn" type="submit"><img src="/assets/img/circle-check-regular.svg" alt=""></button>
                                     </form>
                                 </td>
                                 <td>
