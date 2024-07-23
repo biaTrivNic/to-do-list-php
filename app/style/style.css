@@ -2,30 +2,32 @@
     font-size: 62.5%;
 }
 
-@font-face {
-    font-family: "Roboto", sans-serif;
-    src: url(/fonts/Roboto/Roboto-Regular.ttf);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* @font-face {
+    font-family: "Montserrat", sans-serif;
+    src: url(/assets/fonts/Montserrat/Montserrat-Regular.ttf);
     font-weight: 400;
 }
 
 @font-face {
-    font-family: "Roboto", sans-serif;
-    src: url(/fonts/Roboto/Roboto-Bold.ttf);
+    font-family: "Montserrat", sans-serif;
+    src: url(/assets/fonts/Montserrat/Montserrat-Bold.ttf);
     font-weight: 700;
 }
 
 @font-face {
-    font-family: "Roboto", sans-serif;
-    src: url(/fonts/Roboto/Roboto-Medium.ttf);
+    font-family: "Montserrat", sans-serif;
+    src: url(/assets/fonts/Montserrat/Montserrat-Medium.ttf);
     font-weight: 500;
-}
+} */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     color: var(--text-color);
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #1C122B;
 }
 html, body {
@@ -34,7 +36,7 @@ html, body {
 
 .container {
     display: grid;
-    grid-template-columns: 17% 83%;
+    grid-template-columns: 15% 85%;
 }
 
 .content {
@@ -43,3 +45,4 @@ html, body {
     margin-left: 0;
     border-radius: 20px;
 }
+

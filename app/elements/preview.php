@@ -26,20 +26,24 @@ $tarefasConcluida = $databaseHandler->countTarefas($sql);
 
 $total_de_tarefas = $tarefasPendentes[0]['total_tarefas'] + $tarefasAndamento[0]['total_tarefas'] + $tarefasConcluida[0]['total_tarefas'];
 
+$width_pendentes = ($tarefasPendentes[0]['total_tarefas'] / $total_de_tarefas) * 100;
+$width_andamento = ($tarefasAndamento[0]['total_tarefas'] / $total_de_tarefas) * 100;
+$width_concluida = ($tarefasConcluida[0]['total_tarefas'] / $total_de_tarefas) * 100;
+
 ?>
 
-<section>
+<section class="preview-container">
     <h1>Você tem:</h1>
-    <div>
-        <h1><?php echo $tarefasPendentes[0]['total_tarefas'] ?> tarefa pendentes</h1>
-        <div></div>
+    <div class="bar-container">
+        <h1><?php echo $tarefasPendentes[0]['total_tarefas'] ?> tarefa(s) pendente(s)</h1>
+        <div class="bar"><div style="width: <?php echo $width_pendentes?>%;background-color: rgb(212, 73, 73);"></div></div>
     </div>
-    <div>
-        <h1><?php echo $tarefasAndamento[0]['total_tarefas'] ?> tarefa em andamento</h1>
-        <div></div>
+    <div class="bar-container">
+        <h1><?php echo $tarefasAndamento[0]['total_tarefas'] ?> tarefa(s) em andamento</h1>
+        <div class="bar"><div style="width: <?php echo $width_andamento?>%;background-color: rgb(97, 97, 212);"></div></div>
     </div>
-    <div>
-        <h1><?php echo $tarefasConcluida[0]['total_tarefas'] ?> tarefa em concluidas</h1>
-        <div></div>
+    <div class="bar-container">
+        <h1><?php echo $tarefasConcluida[0]['total_tarefas'] ?> tarefa(s) em concluida(s)</h1>
+        <div class="bar"><div style="width: <?php echo $width_concluida?>%;background-color: rgb(58, 168, 58);"></div></div>
     </div>
 </section>

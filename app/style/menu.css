@@ -3,11 +3,11 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
 }
 
 .menu_container h1 {
-    font-size: 40px;
+    font-size: 30px;
     padding: 40px 30px;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .menu_container ul li {
-    font-size: 20px;
+    font-size: 17px;
     padding: 10px 15px;
     margin-left: 20px;
     border-top-left-radius: 40px;
@@ -41,7 +41,6 @@
     color: #1C122B !important;
     cursor: default;
 }
-
 
 .menu_container ul li::after {
     content: "";

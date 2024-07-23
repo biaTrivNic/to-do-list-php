@@ -1,0 +1,74 @@
+.saudacao-container, .preview-container{
+    display: flex;
+    background-color: #fff;
+    margin: 25px 30px;
+    border-radius: 20px;
+    -webkit-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+}
+
+.saudacao-container {
+    margin-right: 0;
+}
+
+.saudacao-content {
+    font-size: 40px;
+    font-weight: 700;
+    padding: 25px 0px 25px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.saudacao-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.saudacao-text-container h1 {
+    font-size: 28px;
+    font-weight: 500;
+}
+.saudacao-text-container p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.saudacao-container img {
+    width: 280px;
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: 55% 45%;
+}
+
+.preview-container {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 40px;
+    justify-content: space-around;
+    font-size: 25px;
+}
+
+.bar-container h1{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.bar {
+    width: 95%;
+    height: 10px;
+    border-radius: 20px;
+    background-color: rgb(200, 200, 200);
+    margin-top: 10px;
+    position: relative;
+}
+
+.bar div {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    border-radius: 20px;
+}
