@@ -51,11 +51,18 @@ $tarefas = $databaseHandler->getAllData($sql);
                             <th>Tarefa</th>
                             <th>Grupo</th>
                             <th>Categoria</th>
-                            <th><p style="text-align: center;">Status</p></th>
+                            <th>
+                                <p style="text-align: center;">Status</p>
+                            </th>
                             <th>Fim</th>
                             <th></th>
                             <th></th>
-                            <th><a href="tarefas/new" class="circle-btn new-btn"><img src="/assets/img/circle-plus-solid.svg" alt=""> Nova</a></th>
+                            <th>
+                                <form class="btn-container" method="get" action="/tarefas/new">
+                                    <input type="hidden" name="path" value="/tarefas">
+                                    <button class="circle-btn new-btn" type="submit"><img src="/assets/img/circle-plus-solid.svg" alt=""> Nova</b>
+                                </form>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,7 +88,9 @@ $tarefas = $databaseHandler->getAllData($sql);
                                 <td><?php echo $tarefa['tarefa_nome']; ?></td>
                                 <td><?php echo $tarefa['grupo_nome']; ?></td>
                                 <td><?php echo $tarefa['categoria_nome']; ?></td>
-                                <td><div class="<?php echo $class ?>"><?php echo $tarefa['status']; ?></div></td>
+                                <td>
+                                    <div class="<?php echo $class ?>"><?php echo $tarefa['status']; ?></div>
+                                </td>
                                 <td><?php echo $date; ?></td>
                                 <td>
                                     <form class="btn-container" method="get" action="/tarefas/edit">

@@ -34,8 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     FROM 
     grupos;";
 
-    $config = Config::getConfig();
-    $databaseHandler = new DatabaseHandler($config);
     $grupos = $databaseHandler->getAllData($sql);
 
 
@@ -43,8 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     FROM 
     categorias;";
 
-    $config = Config::getConfig();
-    $databaseHandler = new DatabaseHandler($config);
     $categorias = $databaseHandler->getAllData($sql);
 }
 ?>
@@ -96,12 +92,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nome = $_POST['nome'];
     $data_finalizacao = $_POST['data_finalizacao'];
+    $categoria_id = $_POST['categoria_id'];
+    $grupo_id = $_POST['grupo_id'];
     $id = (int)$_POST['tarefa_id'];
     $path = $_POST['path'];
 
     $sql = "UPDATE tarefas 
 SET nome = '$nome', 
-    data_finalizacao = '$data_finalizacao' 
+    data_finalizacao = '$data_finalizacao',
+    categoria_id = '$categoria_id',
+    grupo_id = '$grupo_id' 
 WHERE id = {$id}";
 
     $config = Config::getConfig();

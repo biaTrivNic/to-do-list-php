@@ -13,13 +13,14 @@ $request = trim($request, '/');
 $request = strtok($request, '?');
 
 $routes = [
-    '' => 'views' . DS . 'home.php',
     'tarefas' => 'views' . DS . 'tarefas' . DS . 'index.php',
     'tarefas/new' => 'views' . DS . 'tarefas' . DS . 'add.php',
     'tarefas/delete' => 'views' . DS . 'tarefas' . DS . 'delete.php',
     'tarefas/edit' => 'views' . DS . 'tarefas' . DS . 'edit.php',
     'tarefas/kanban' => 'views' . DS . 'tarefas' . DS . 'kanban.php',
-    'tarefas/done' => 'views' . DS . 'tarefas' . DS . 'done.php'
+    'tarefas/done' => 'views' . DS . 'tarefas' . DS . 'done.php',
+    'categorias/new' => 'views' . DS . 'categorias' . DS . 'add.php',
+    'grupos/new' => 'views' . DS . 'grupos' . DS . 'add.php'
 ];
 
 if (array_key_exists($request, $routes)) {
@@ -28,3 +29,10 @@ if (array_key_exists($request, $routes)) {
     http_response_code(404);
     include ROOT_DIR . 'views' . DS . 'notfound.php';
 }
+
+$path = $_SERVER['REQUEST_URI'];
+
+if ($path === '/') {
+    header("Location: /tarefas");
+    exit();
+} 

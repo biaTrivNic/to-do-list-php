@@ -43,7 +43,7 @@ $width_concluida = ($tarefasConcluida[0]['total_tarefas'] / $total_de_tarefas) *
         <div class="bar"><div style="width: <?php echo $width_andamento?>%;background-color: rgb(97, 97, 212);"></div></div>
     </div>
     <div class="bar-container">
-        <h1><?php echo $tarefasConcluida[0]['total_tarefas'] ?> tarefa(s) em concluida(s)</h1>
+        <h1><?php echo $tarefasConcluida[0]['total_tarefas'] ?> tarefa(s) concluida(s)</h1>
         <div class="bar"><div style="width: <?php echo $width_concluida?>%;background-color: rgb(58, 168, 58);"></div></div>
     </div>
 </section>

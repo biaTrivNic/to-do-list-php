@@ -1,8 +1,8 @@
 <?php $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-$path = parse_url($url, PHP_URL_PATH);
+$urlPath = parse_url($url, PHP_URL_PATH);
 
-$segments = explode('/', trim($path, '/'));
+$segments = explode('/', trim($urlPath, '/'));
 
 $content = end($segments);
 

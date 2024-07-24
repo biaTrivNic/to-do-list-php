@@ -63,6 +63,11 @@ $tarefas = $databaseHandler->getAllData($sql);
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; ?>
+                        <form id="add-btn-pendente" class="add-btn" method="get" action="/tarefas/new">
+                            <input type="hidden" name="path" value="/tarefas/kanban">
+                            <input type="hidden" name="status" value="pendente">
+                            <button class="circle-btn" id="delete-btn" type="submit">+</button>
+                        </form>
                     </div>
                 </div>
                 <div class="kanban-column" id="in-progress">
@@ -86,6 +91,11 @@ $tarefas = $databaseHandler->getAllData($sql);
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; ?>
+                        <form id="add-btn-andamento" class="add-btn" method="get" action="/tarefas/new">
+                            <input type="hidden" name="path" value="/tarefas/kanban">
+                            <input type="hidden" name="status" value="em andamento">
+                            <button class="circle-btn" id="delete-btn" type="submit">+</button>
+                        </form>
                     </div>
                 </div>
                 <div class="kanban-column" id="done">
@@ -109,6 +119,11 @@ $tarefas = $databaseHandler->getAllData($sql);
                                 </div>
                             <?php endif; ?>
                         <?php endforeach; ?>
+                        <form id="add-btn-concluido" class="add-btn" method="get" action="/tarefas/new">
+                            <input type="hidden" name="path" value="/tarefas/kanban">
+                            <input type="hidden" name="status" value="concluída">
+                            <button class="circle-btn" id="delete-btn" type="submit">+</button>
+                        </form>
                     </div>
                 </div>
             </div>
