@@ -63,54 +63,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php require_once ROOT_DIR . DS . 'elements' . DS . 'menu.php'; ?>
         <div class="content">
             <?php require_once ROOT_DIR . DS . 'elements' . DS . 'header.php'; ?>
-            <div>
-                <h1>Inserir Nova Tarefa</h1>
-                <form action="new" method="POST">
-                    <input type="hidden" id="path" name="path" value="<?php echo $path; ?>">
+            <div class="form-board">
+                <div>
+                    <h1>NOVA TAREFA</h1>
+                    <form action="new" method="POST">
+                        <input type="hidden" id="path" name="path" value="<?php echo $path; ?>">
 
-                    <label for="nome">Nome da Tarefa:</label><br>
-                    <input type="text" id="nome" name="nome" required><br><br>
+                        <label for="nome">Nome da Tarefa:</label><br>
+                        <input type="text" id="nome" name="nome" required><br><br>
 
-                    <label for="grupo_id">Grupo:</label><br>
-                    <select id="grupo_id" name="grupo_id" required>
-                        <?php foreach ($grupos as $grupo) : ?>
-                            <option value="<?php echo $grupo['grupo_id'] ?>"><?php echo $grupo['grupo_nome'] ?></option>
-                        <?php endforeach; ?>
-                    </select><br><br>
+                        <label for="grupo_id">Grupo:</label><br>
+                        <select id="grupo_id" name="grupo_id" required>
+                            <?php foreach ($grupos as $grupo) : ?>
+                                <option value="<?php echo $grupo['grupo_id'] ?>"><?php echo $grupo['grupo_nome'] ?></option>
+                            <?php endforeach; ?>
+                        </select><br><br>
 
-                    <label for="categoria_id">Categoria:</label><br>
-                    <select id="categoria_id" name="categoria_id" required>
-                        <?php foreach ($categorias as $categoria) : ?>
-                            <option value="<?php echo $categoria['categoria_id'] ?>"><?php echo $categoria['categoria_nome'] ?></option>
-                        <?php endforeach; ?>
-                    </select><br><br>
+                        <label for="categoria_id">Categoria:</label><br>
+                        <select id="categoria_id" name="categoria_id" required>
+                            <?php foreach ($categorias as $categoria) : ?>
+                                <option value="<?php echo $categoria['categoria_id'] ?>"><?php echo $categoria['categoria_nome'] ?></option>
+                            <?php endforeach; ?>
+                        </select><br><br>
 
-                    <label for="status">Status:</label><br>
-                    <select id="status" name="status" required>
-                        <option <?php if ($status == "pendente") echo "selected" ?> value="pendente">Pendente</option>
-                        <option <?php if ($status == "em andamento") echo "selected" ?> value="em andamento">Em Andamento</option>
-                        <option <?php if ($status == "concluída") echo "selected" ?> value="concluída">Concluída</option>
-                    </select><br><br>
+                        <label for="status">Status:</label><br>
+                        <select id="status" name="status" required>
+                            <option <?php if ($status == "pendente") echo "selected" ?> value="pendente">Pendente</option>
+                            <option <?php if ($status == "em andamento") echo "selected" ?> value="em andamento">Em Andamento</option>
+                            <option <?php if ($status == "concluída") echo "selected" ?> value="concluída">Concluída</option>
+                        </select><br><br>
 
-                    <label for="data_finalizacao">Data de Finalização:</label><br>
-                    <input type="datetime-local" id="data_finalizacao" name="data_finalizacao"><br><br>
+                        <label for="data_finalizacao">Data de Finalização:</label><br>
+                        <input type="datetime-local" id="data_finalizacao" name="data_finalizacao"><br><br>
 
-                    <input type="submit" value="Adicionar Tarefa">
-                </form>
-            </div>
-            <div>
-                <form action="/categorias/new" method="GET">
-                    <label for="nome">Nome da Categoria:</label><br>
-                    <input type="text" id="nome_categoria" name="nome_categoria" required><br><br>
+                        <input type="submit" value="Adicionar Tarefa">
+                    </form>
+                </div>
+                <div class="forms-container">
+                    <div class="add-outros">
+                        <button class="circle-btn add-btn"><img src="/assets/img/circle-plus-solid.svg" alt="">
+                            <h2> Adicionar Categoria</h2>
+                        </button>
+                        <form action="/categorias/new" method="GET" class="add-card hide">
+                            <label for="nome">Nome da Categoria:</label><br>
+                            <input type="text" id="nome_categoria" name="nome_categoria" required><br><br>
 
-                    <input type="submit" value="Adicionar Categoria">
-                </form>
-                <form action="/grupos/new" method="GET">
-                    <label for="nome">Nome do Grupo:</label><br>
-                    <input type="text" id="nome_grupo" name="nome_grupo" required><br><br>
+                            <input type="submit" value="Adicionar Categoria">
+                        </form>
+                    </div>
+                    <div class="add-outros">
+                        <button class="circle-btn add-btn"><img src="/assets/img/circle-plus-solid.svg" alt="">
+                            <h2> Adicionar Grupo</h2>
+                        </button>
+                        <form action="/grupos/new" method="GET" class="add-card hide">
+                            <label for="nome">Nome do Grupo:</label><br>
+                            <input type="text" id="nome_grupo" name="nome_grupo" required><br><br>
 
-                    <input type="submit" value="Adicionar Grupo">
-                </form>
+                            <input type="submit" value="Adicionar Grupo">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -118,4 +130,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </html>
 
-<?php
+<script>
+    const btn = document.querySelectorAll('.add-btn');
+    const icon = document.querySelectorAll('.add-btn img');
+    const form = document.querySelectorAll('.add-card');
+
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].addEventListener('click', () => {
+            form[i].classList.toggle('hide');
+            if (icon[i].src.includes('circle-plus-solid.svg')) {
+                icon[i].src = '/assets/img/circle-minus-solid.svg';
+            } else {
+                icon[i].src = '/assets/img/circle-plus-solid.svg';
+            }
+        })
+    }
+</script>

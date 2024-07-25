@@ -10,18 +10,32 @@
     height: 100vh;
 } */
 
+.form-board {
+    background-color: #FAFBFF;
+    margin: 20px 30px;
+    border-radius: 20px;
+    padding: 40px 35px;
+    -webkit-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 30px;
+}
+
 form {
-    background: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    margin: 20px;
+    /* width: 100%; */
+    /* max-width: 400px; */
+    background-color: #fff;
+    border-radius: 20px;
+    -webkit-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 46px -14px rgba(0, 0, 0, 0.75);
 }
 
 h1 {
-    text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
@@ -32,6 +46,7 @@ label {
     margin-bottom: 8px;
     font-weight: bold;
     color: #555;
+    font-size: 20px;
 }
 
 input[type="text"],
@@ -65,4 +80,37 @@ input[type="submit"]:hover {
 
 input[type="hidden"] {
     display: none;
+}
+
+.hide {
+    display: none;
+}
+
+.forms-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-left: 30px;
+    margin-top: 50px;
+}
+.add-outros h2{
+    font-size: 20px;
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.add-btn:hover h2{
+    color: #696969;
+}
+.add-btn:hover img{
+    transform: scale(1.1);
+}
+
+.add-card {
+    margin-top: 30px;
 }
