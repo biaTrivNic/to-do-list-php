@@ -26,9 +26,9 @@ $tarefasConcluida = $databaseHandler->countTarefas($sql);
 
 $total_de_tarefas = $tarefasPendentes[0]['total_tarefas'] + $tarefasAndamento[0]['total_tarefas'] + $tarefasConcluida[0]['total_tarefas'];
 
-$width_pendentes = ($tarefasPendentes[0]['total_tarefas'] / $total_de_tarefas) * 100;
-$width_andamento = ($tarefasAndamento[0]['total_tarefas'] / $total_de_tarefas) * 100;
-$width_concluida = ($tarefasConcluida[0]['total_tarefas'] / $total_de_tarefas) * 100;
+$width_pendentes = empty($total_de_tarefas) ? 0 : ($tarefasPendentes[0]['total_tarefas'] / $total_de_tarefas) * 100;
+$width_andamento = empty($total_de_tarefas) ? 0 : ($tarefasAndamento[0]['total_tarefas'] / $total_de_tarefas) * 100;
+$width_concluida = empty($total_de_tarefas) ? 0 : ($tarefasConcluida[0]['total_tarefas'] / $total_de_tarefas) * 100;
 
 ?>
 

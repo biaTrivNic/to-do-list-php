@@ -20,11 +20,9 @@
 $sql = "SELECT 
     tarefas.id AS tarefa_id,
     tarefas.nome AS tarefa_nome,
-    tarefas.descricao AS tarefa_descricao,
     grupos.nome AS grupo_nome,
     categorias.nome AS categoria_nome,
     tarefas.status,
-    tarefas.data_criacao,
     tarefas.data_finalizacao
     FROM 
         tarefas
@@ -66,6 +64,17 @@ $tarefas = $databaseHandler->getAllData($sql);
                         </tr>
                     </thead>
                     <tbody>
+
+                    <?php if(empty($tarefas)): ?>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Nenhuma tarefa encontrada</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    <?php else: ?>
                         <?php foreach ($tarefas as $tarefa) : ?>
                             <?php $dateTime = new DateTime($tarefa['data_finalizacao']);
 
@@ -114,6 +123,7 @@ $tarefas = $databaseHandler->getAllData($sql);
                                 </td>
                             </tr>
                         <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>

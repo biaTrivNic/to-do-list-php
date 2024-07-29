@@ -73,14 +73,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" id="nome" name="nome" required><br><br>
 
                         <label for="grupo_id">Grupo:</label><br>
-                        <select id="grupo_id" name="grupo_id" required>
+                        <select id="grupo_id" name="grupo_id">
                             <?php foreach ($grupos as $grupo) : ?>
                                 <option value="<?php echo $grupo['grupo_id'] ?>"><?php echo $grupo['grupo_nome'] ?></option>
                             <?php endforeach; ?>
                         </select><br><br>
 
                         <label for="categoria_id">Categoria:</label><br>
-                        <select id="categoria_id" name="categoria_id" required>
+                        <select id="categoria_id" name="categoria_id">
                             <?php foreach ($categorias as $categoria) : ?>
                                 <option value="<?php echo $categoria['categoria_id'] ?>"><?php echo $categoria['categoria_nome'] ?></option>
                             <?php endforeach; ?>
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </select><br><br>
 
                         <label for="data_finalizacao">Data de Finalização:</label><br>
-                        <input type="datetime-local" id="data_finalizacao" name="data_finalizacao"><br><br>
+                        <input type="datetime-local" id="data_finalizacao" name="data_finalizacao" required><br><br>
 
                         <input type="submit" value="Adicionar Tarefa">
                     </form>
@@ -104,7 +104,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button class="circle-btn add-btn"><img src="/assets/img/circle-plus-solid.svg" alt="">
                             <h2> Adicionar Categoria</h2>
                         </button>
-                        <form action="/categorias/new" method="GET" class="add-card hide">
+                        <form action="/categorias/new" method="POST" class="add-card hide">
+                            <input type="hidden" name="status" value="<?php echo $status; ?>">
+                            <input type="hidden" id="path" name="path" value="<?php echo $path; ?>">
                             <label for="nome">Nome da Categoria:</label><br>
                             <input type="text" id="nome_categoria" name="nome_categoria" required><br><br>
 
@@ -115,7 +117,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button class="circle-btn add-btn"><img src="/assets/img/circle-plus-solid.svg" alt="">
                             <h2> Adicionar Grupo</h2>
                         </button>
-                        <form action="/grupos/new" method="GET" class="add-card hide">
+                        <form action="/grupos/new" method="POST" class="add-card hide">
+                            <input type="hidden" name="status" value="<?php echo $status; ?>">
+                            <input type="hidden" id="path" name="path" value="<?php echo $path; ?>">
                             <label for="nome">Nome do Grupo:</label><br>
                             <input type="text" id="nome_grupo" name="nome_grupo" required><br><br>
 

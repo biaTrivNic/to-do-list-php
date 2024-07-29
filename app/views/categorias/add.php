@@ -2,9 +2,13 @@
 
 <?php 
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $categoria_nome = $_GET['nome_categoria'];
+    $path = $_POST['path'];
+
+    $status = $_POST['status'];
+
+    $categoria_nome = $_POST['nome_categoria'];
 
     $sql = "INSERT INTO categorias (nome)
             VALUES ('$categoria_nome')";
@@ -13,6 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $databaseHandler = new DatabaseHandler($config);
     $databaseHandler->addTarefas($sql);
 
-    header("Location: /tarefas/new");
+    header("Location: /tarefas/new?path={$path}&status={$status}");
     exit();
 }

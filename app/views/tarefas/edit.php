@@ -8,13 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $sql = "SELECT 
         tarefas.id AS tarefa_id,
         tarefas.nome AS tarefa_nome,
-        tarefas.descricao AS tarefa_descricao,
         grupos.nome AS grupo_nome,
         grupos.id AS grupo_id,
         categorias.nome AS categoria_nome,
         categorias.id AS categoria_id,
         tarefas.status,
-        tarefas.data_criacao,
         tarefas.data_finalizacao
     FROM 
         tarefas
@@ -43,50 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $categorias = $databaseHandler->getAllData($sql);
 }
-?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Editar Tarefa</title>
-</head>
-
-<body>
-    <h1>Editar Tarefa</h1>
-    <form action="edit" method="POST">
-        <input type="hidden" id="tarefa_id" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
-        <input type="hidden" id="path" name="path" value="<?php echo $path; ?>">
-
-        <label for="nome">Nome da Tarefa:</label><br>
-        <input type="text" id="nome" name="nome" value="<?php echo $tarefa['tarefa_nome']; ?>" required><br><br>
-
-        <label for="grupo_id">Grupo:</label><br>
-        <select id="grupo_id" name="grupo_id" required>
-            <?php foreach ($grupos as $grupo) : ?>
-                <option <?php if($grupo['grupo_id'] == $tarefa['grupo_id']) echo 'selected'?> value="<?php echo $grupo['grupo_id'] ?>"><?php echo $grupo['grupo_nome']?></option>
-            <?php endforeach; ?>
-        </select><br><br>
-
-        <label for="categoria_id">Categoria:</label><br>
-        <select id="categoria_id" name="categoria_id" required>
-            <?php foreach ($categorias as $categoria) : ?>
-                <option <?php if($categoria['categoria_id'] == $tarefa['categoria_id']) echo 'selected'?> value="<?php echo $categoria['categoria_id'] ?>"><?php echo $categoria['categoria_nome'] ?></option>
-            <?php endforeach; ?>
-        </select><br><br>
-
-
-        <label for="data_finalizacao">Data de Finalização:</label><br>
-        <input type="datetime-local" id="data_finalizacao" name="data_finalizacao" value="<?php echo $tarefa['data_finalizacao'] ? date('Y-m-d\TH:i', strtotime($tarefa['data_finalizacao'])) : ''; ?>"><br><br>
-
-        <input type="submit" value="Atualizar Tarefa">
-    </form>
-</body>
-
-</html>
-
-
-<?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -111,3 +65,61 @@ WHERE id = {$id}";
     header("Location: {$path}");
     exit();
 }
+
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Editar Tarefa</title>
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'reset.css' ?>">
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'style.css' ?>">
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'menu.css' ?>">
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'header.css' ?>">
+    <link rel="stylesheet" href="<?php echo '..' . DS . 'style' . DS . 'add.css' ?>">
+</head>
+
+<body>
+    <div class="container">
+        <?php require_once ROOT_DIR . DS . 'elements' . DS . 'menu.php'; ?>
+        <div class="content">
+            <?php require_once ROOT_DIR . DS . 'elements' . DS . 'header.php'; ?>
+            <div class="form-board" style="grid-template-columns: 1fr;">
+                <div>
+                    <h1>Editar Tarefa</h1>
+                    <form action="edit" method="POST">
+                        <input type="hidden" id="tarefa_id" name="tarefa_id" value="<?php echo $tarefa['tarefa_id']; ?>">
+                        <input type="hidden" id="path" name="path" value="<?php echo $path; ?>">
+
+                        <label for="nome">Nome da Tarefa:</label><br>
+                        <input type="text" id="nome" name="nome" value="<?php echo $tarefa['tarefa_nome']; ?>" required><br><br>
+
+                        <label for="grupo_id">Grupo:</label><br>
+                        <select id="grupo_id" name="grupo_id" required>
+                            <?php foreach ($grupos as $grupo) : ?>
+                                <option <?php if ($grupo['grupo_id'] == $tarefa['grupo_id']) echo 'selected' ?> value="<?php echo $grupo['grupo_id'] ?>"><?php echo $grupo['grupo_nome'] ?></option>
+                            <?php endforeach; ?>
+                        </select><br><br>
+
+                        <label for="categoria_id">Categoria:</label><br>
+                        <select id="categoria_id" name="categoria_id" required>
+                            <?php foreach ($categorias as $categoria) : ?>
+                                <option <?php if ($categoria['categoria_id'] == $tarefa['categoria_id']) echo 'selected' ?> value="<?php echo $categoria['categoria_id'] ?>"><?php echo $categoria['categoria_nome'] ?></option>
+                            <?php endforeach; ?>
+                        </select><br><br>
+
+
+                        <label for="data_finalizacao">Data de Finalização:</label><br>
+                        <input type="datetime-local" id="data_finalizacao" name="data_finalizacao" value="<?php echo $tarefa['data_finalizacao'] ? date('Y-m-d\TH:i', strtotime($tarefa['data_finalizacao'])) : ''; ?>"><br><br>
+
+                        <input type="submit" value="Atualizar Tarefa">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

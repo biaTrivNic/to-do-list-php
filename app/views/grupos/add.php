@@ -1,10 +1,14 @@
-<h1>add categoria</h1>
+<h1>add grupo</h1>
 
 <?php 
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $grupo_nome = $_GET['nome_grupo'];
+    $path = $_POST['path'];
+
+    $status = $_POST['status'];
+
+    $grupo_nome = $_POST['nome_grupo'];
 
     $sql = "INSERT INTO grupos (nome)
             VALUES ('$grupo_nome')";
@@ -13,6 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $databaseHandler = new DatabaseHandler($config);
     $databaseHandler->addTarefas($sql);
 
-    header("Location: /tarefas/new");
+    header("Location: /tarefas/new?path={$path}&status={$status}");
     exit();
 }
